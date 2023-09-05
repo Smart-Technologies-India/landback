@@ -1,0 +1,516 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Auth {
+  token: String!
+  id: Int!
+  design_point_id: Int
+  name: String
+  email: String
+  password: String!
+  contact: String
+  otp: String
+  pic_url: String
+  access_kay: String
+  role: Role!
+  department: Department!
+  status: status!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+}
+
+enum Role {
+  NONE
+  SYSTEM
+  ADMIN
+  COLLECTOR
+  DYCOLLECTOR
+  SUPERITENDANT
+  HEADCLERK
+  MAMLATDAR
+  ATP
+  CITYSURVEY
+  COURTCLERK
+  USER
+}
+
+enum Department {
+  NONE
+  PDA
+  EOCS
+  LANDSECTION
+  MAMLATDAR
+  COLLECTOR
+  DYCOLLECTOR
+}
+
+enum status {
+  NONE
+  ACTIVE
+  INACTIVE
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type User {
+  id: Int!
+  name: String
+  email: String
+  password: String!
+  contact: String
+  otp: String
+  pic_url: String
+  address: String
+  user_uid: String
+  role: Role!
+  department: Department!
+  status: status!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+}
+
+type QueryData {
+  id: Int!
+  stage: FormType!
+  form_id: Int!
+  form_status: Int!
+  from_user_id: Int!
+  to_user_id: Int!
+  query_type: QueryType!
+  query_status: QueryStatus!
+  remark: String!
+  doc_url: String
+  status: status!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  from_user: User
+  to_user: User
+}
+
+enum FormType {
+  NONE
+  SALE
+  GIFT
+  PARTITION
+  MORTGAGE
+  NA
+  SUBDIVISON
+  AMALGAMATION
+  LEASE
+  COURT
+  RTI
+  GRANTGOVTLAND
+  ACQUISITION
+}
+
+enum QueryType {
+  NONE
+  INTRA
+  INTER
+  PUBLIC
+}
+
+enum QueryStatus {
+  NONE
+  SENT
+  RECEIVED
+  REPLIED
+  RESOLVED
+}
+
+type Common {
+  id: Int!
+  form_id: Int!
+  user_id: Int!
+  auth_user_id: String
+  focal_user_id: String
+  intra_user_id: String
+  inter_user_id: String
+  village: String!
+  name: String!
+  number: String!
+  event_date: DateTime!
+  form_status: Int!
+  form_type: FormType!
+  query_status: queryStatus!
+  status: status!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime!
+}
+
+enum queryStatus {
+  NONE
+  SUBMIT
+  INPROCESS
+  QUERYRAISED
+  APPROVED
+  REJECTED
+  PAYMENTPENDING
+  CERTIFICATEGRANT
+  COMPLETED
+}
+
+type FileCount {
+  MARRIAGE: Int!
+  RELIGIOUS: Int!
+  ROADSHOW: Int!
+  GENERIC: Int!
+}
+
+type VillageCount {
+  count: Int!
+  village: String!
+}
+
+type OfficerCount {
+  count: Int!
+  auth_user_id: String!
+}
+
+type FileProgressDetails {
+  pending: Int!
+  completed: Int!
+  rejected: Int!
+}
+
+type FileProgress {
+  MARRIAGE: FileProgressDetails!
+  RELIGIOUS: FileProgressDetails!
+  ROADSHOW: FileProgressDetails!
+  GENERIC: FileProgressDetails!
+}
+
+type VillageProgressDetails {
+  formType: String!
+  count: Int!
+}
+
+type VillageProgress {
+  village: String!
+  fileCounts: [VillageProgressDetails!]!
+}
+
+type Village {
+  id: Int!
+  name: String!
+}
+
+type Na {
+  id: Int!
+  userId: Int
+  user_uid: String
+  name: String
+  address: String
+  mobile: String
+  email: String
+  scst: ScSt
+  occupation: String
+  govt_employee: String
+  village_id: Int!
+  survey_no: String!
+  sub_division: String!
+  land_use: String
+  land_situate: String
+  electric: String
+  road_access: String
+  road_adjoin: String
+  na_reason: String
+  addition_land: String
+  past_appln_reject: String
+  agri_evidence_url: String!
+  govt_evidence_url: String!
+  land_purpose: TypeOfNA
+  land_site_plan_url: String!
+  nakel_url_1_14: String!
+  nakel_rr_14: String!
+  remarks: String
+  signature_url: String
+  rejection_reason: String
+  certificate_id: String
+  certificate_date: DateTime
+  certificate_url: String
+  comments_dept: String
+  condition_to_follow: String
+  iagree: Agree
+  status: status
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+}
+
+enum ScSt {
+  NONE
+  GENERAL
+  ST
+  SC
+  OTHER
+}
+
+enum TypeOfNA {
+  NONE
+  RESIDENTIAL
+  COMMERCIAL
+  INDUSTRIAL
+  RESIDENTIALCUMCOMMERCIAL
+}
+
+enum Agree {
+  NONE
+  YES
+  NO
+}
+
+type Query {
+  signin(loginUserInput: LoginUserInput!): Auth!
+  verifyOtp(mobileLoginInput: MobileLoginInput!): Auth!
+  getUserById(id: Int!): User!
+  getAllVillage: [Village!]!
+  getVillageById(id: Int!): Village!
+  getAllQuery: [QueryData!]!
+  getQueryById(id: Int!): QueryData!
+  searchQuery(searchQueryInput: SearchQueryInput!): [QueryData!]!
+  getAllCommon: [Common!]!
+  getAllCommonById(id: Int!): Common!
+  searchCommon(searchCommonInput: SearchCommonInput!): [Common!]!
+  filterCommon(filterCommonInput: FilterCommonInput!): [Common!]!
+  getFileCount: FileCount!
+  villageFileCount: [VillageCount!]!
+  officerFileCount: [OfficerCount!]!
+  officerFileProgress: FileProgress!
+  villageFileProgress: [VillageProgress!]!
+  getAllNa: [Na!]!
+  getNaById(id: Int!): Na!
+}
+
+input LoginUserInput {
+  contact: String!
+  password: String!
+}
+
+input MobileLoginInput {
+  contact: String
+  name: String
+  otp: String
+}
+
+input SearchQueryInput {
+  stage: FormType!
+  form_id: Int!
+  user_id: Int
+  status: status
+  query_type: QueryType
+}
+
+input SearchCommonInput {
+  form_id: Int
+  user_id: Int
+  auth_user_id: String
+  focal_user_id: String
+  intra_user_id: String
+  inter_user_id: String
+  village: String
+  name: String
+  number: String
+  event_date: DateTime
+  form_status: Int
+  form_type: FormType
+  query_status: queryStatus
+  status: status
+  id: Int
+  deletedAt: DateTime
+}
+
+input FilterCommonInput {
+  user_type: UserType
+  user_id: Int!
+  form_type: FormType
+}
+
+enum UserType {
+  USER
+  DEPARTMENT
+}
+
+type Mutation {
+  signup(signUpUserInput: SignUpUserInput!): Auth!
+  mobileLogin(mobileLoginInput: MobileLoginInput!): Auth!
+  updateUserById(updateUserInput: UpdateUserInput!): User!
+  createQuery(createQueryInput: CreateQueryInput!): QueryData!
+  updateQueryById(updateQueryInput: UpdateQueryInput!): QueryData!
+  deleteQueryById(updateQueryInput: UpdateQueryInput!): QueryData!
+  createCommon(createCommonInput: CreateCommonInput!): Common!
+  updateCommonById(updateCommonInput: UpdateCommonInput!): Common!
+  deleteCommonById(updateCommonInput: UpdateCommonInput!): Common!
+  createNa(createNaInput: CreateNaInput!): Na!
+  updateNaById(updateNaInput: UpdateNaInput!): Na!
+  deleteNaById(updateNaInput: UpdateNaInput!): Na!
+}
+
+input SignUpUserInput {
+  name: String!
+  contact: String!
+  password: String!
+}
+
+input UpdateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+  name: String
+  email: String
+  password: String
+  contact: String
+  pic_url: String
+  role: Role
+  department: Department
+  address: String
+  user_uid: String
+  status: status
+  deletedAt: DateTime
+}
+
+input CreateQueryInput {
+  stage: FormType!
+  form_id: Int!
+  form_status: Int!
+  from_user_id: Int!
+  to_user_id: Int!
+  query_type: QueryType!
+  query_status: QueryStatus!
+  remark: String!
+  doc_url: String
+  status: status
+}
+
+input UpdateQueryInput {
+  stage: FormType!
+  form_id: Int!
+  form_status: Int!
+  from_user_id: Int!
+  to_user_id: Int!
+  query_type: QueryType!
+  query_status: QueryStatus!
+  remark: String!
+  doc_url: String
+  status: status
+  id: Int!
+  deletedAt: DateTime
+}
+
+input CreateCommonInput {
+  form_id: Int!
+  user_id: Int!
+  auth_user_id: String!
+  focal_user_id: String!
+  intra_user_id: String!
+  inter_user_id: String!
+  village: String!
+  name: String!
+  number: String!
+  event_date: DateTime!
+  form_status: Int!
+  form_type: FormType
+  query_status: queryStatus
+  status: status
+}
+
+input UpdateCommonInput {
+  form_id: Int
+  user_id: Int
+  auth_user_id: String
+  focal_user_id: String
+  intra_user_id: String
+  inter_user_id: String
+  village: String
+  name: String
+  number: String
+  event_date: DateTime
+  form_status: Int
+  form_type: FormType
+  query_status: queryStatus
+  status: status
+  id: Int
+  deletedAt: DateTime
+}
+
+input CreateNaInput {
+  userId: Int
+  user_uid: String
+  name: String!
+  address: String!
+  mobile: String!
+  email: String
+  scst: ScSt
+  occupation: String
+  govt_employee: String
+  village_id: Int!
+  survey_no: String!
+  sub_division: String!
+  land_use: String
+  land_situate: String
+  electric: String
+  road_access: String
+  road_adjoin: String
+  na_reason: String
+  addition_land: String
+  past_appln_reject: String
+  agri_evidence_url: String!
+  govt_evidence_url: String!
+  land_purpose: TypeOfNA
+  land_site_plan_url: String!
+  nakel_url_1_14: String!
+  nakel_rr_14: String!
+  remarks: String
+  signature_url: String
+  iagree: Agree
+  status: status
+}
+
+input UpdateNaInput {
+  userId: Int
+  user_uid: String
+  name: String
+  address: String
+  mobile: String
+  email: String
+  scst: ScSt
+  occupation: String
+  govt_employee: String
+  village_id: Int!
+  survey_no: String!
+  sub_division: String!
+  land_use: String
+  land_situate: String
+  electric: String
+  road_access: String
+  road_adjoin: String
+  na_reason: String
+  addition_land: String
+  past_appln_reject: String
+  agri_evidence_url: String!
+  govt_evidence_url: String!
+  land_purpose: TypeOfNA
+  land_site_plan_url: String!
+  nakel_url_1_14: String!
+  nakel_rr_14: String!
+  remarks: String
+  signature_url: String
+  iagree: Agree
+  status: status
+  id: Int!
+  rejection_reason: String
+  certificate_id: String
+  certificate_date: DateTime
+  certificate_url: String
+  comments_dept: String
+  condition_to_follow: String
+  deletedAt: DateTime
+}
