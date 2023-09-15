@@ -136,7 +136,6 @@ type Common {
   village: String!
   name: String!
   number: String!
-  event_date: DateTime!
   form_status: Int!
   form_type: FormType!
   query_status: queryStatus!
@@ -268,6 +267,108 @@ enum Agree {
   NO
 }
 
+type Survey {
+  id: Int!
+  villageId: Int!
+  survey_no: String!
+  sub_division: String
+  owner_name: String!
+  area: String!
+  zone: String!
+  status: status!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+}
+
+type Sale {
+  id: Int!
+  userId: Int
+  user_uid: String
+  name: String
+  address: String
+  mobile: String
+  email: String
+  scst: ScSt
+  occupation: String
+  govt_employee: String
+  village_id: Int!
+  survey_no: String!
+  sub_division: String!
+  land_use: String
+  land_situate: String
+  electric: String
+  road_access: String
+  land_acq: String
+  sale_reason: String
+  name_purchaser: String
+  address_purchaser: String
+  mobile_purchaser: String
+  addition_land: String
+  past_appln_reject: String
+  agri_evidence_url: String!
+  govt_evidence_url: String!
+  land_site_plan_url: String!
+  nakel_url_1_14: String!
+  remarks: String
+  signature_url: String
+  rejection_reason: String
+  certificate_id: String
+  certificate_date: DateTime
+  certificate_url: String
+  comments_dept: String
+  condition_to_follow: String
+  iagree: Agree
+  status: status
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+}
+
+type Gift {
+  id: Int!
+  userId: Int
+  user_uid: String
+  name: String
+  address: String
+  mobile: String
+  email: String
+  scst: ScSt
+  occupation: String
+  govt_employee: String
+  village_id: Int!
+  survey_no: String!
+  sub_division: String!
+  land_use: String
+  land_situate: String
+  electric: String
+  road_access: String
+  land_acq: String
+  gift_reason: String
+  name_donee: String
+  address_donee: String
+  mobile_donee: String
+  addition_land: String
+  past_appln_reject: String
+  agri_evidence_url: String!
+  govt_evidence_url: String!
+  land_site_plan_url: String!
+  nakel_url_1_14: String!
+  remarks: String
+  signature_url: String
+  rejection_reason: String
+  certificate_id: String
+  certificate_date: DateTime
+  certificate_url: String
+  comments_dept: String
+  condition_to_follow: String
+  iagree: Agree
+  status: status
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+}
+
 type Query {
   signin(loginUserInput: LoginUserInput!): Auth!
   verifyOtp(mobileLoginInput: MobileLoginInput!): Auth!
@@ -286,8 +387,16 @@ type Query {
   officerFileCount: [OfficerCount!]!
   officerFileProgress: FileProgress!
   villageFileProgress: [VillageProgress!]!
+  getAllSurvey: [Survey!]!
+  getAllSurveyById(id: Int!): Survey!
+  getSurveyNumber(searchSurveyInput: SearchSurveyInput!): [Survey!]!
+  getSubDivision(searchSurveyInput: SearchSurveyInput!): [Survey!]!
   getAllNa: [Na!]!
   getNaById(id: Int!): Na!
+  getAllSale: [Sale!]!
+  getSaleById(id: Int!): Sale!
+  getAllGift: [Gift!]!
+  getGiftById(id: Int!): Gift!
 }
 
 input LoginUserInput {
@@ -319,7 +428,6 @@ input SearchCommonInput {
   village: String
   name: String
   number: String
-  event_date: DateTime
   form_status: Int
   form_type: FormType
   query_status: queryStatus
@@ -339,6 +447,13 @@ enum UserType {
   DEPARTMENT
 }
 
+input SearchSurveyInput {
+  villageId: Int
+  survey_no: String
+  sub_division: String
+  owner_name: String
+}
+
 type Mutation {
   signup(signUpUserInput: SignUpUserInput!): Auth!
   mobileLogin(mobileLoginInput: MobileLoginInput!): Auth!
@@ -352,6 +467,12 @@ type Mutation {
   createNa(createNaInput: CreateNaInput!): Na!
   updateNaById(updateNaInput: UpdateNaInput!): Na!
   deleteNaById(updateNaInput: UpdateNaInput!): Na!
+  createSale(createSaleInput: CreateSaleInput!): Sale!
+  updateSaleById(updateSaleInput: UpdateSaleInput!): Sale!
+  deleteSaleById(updateSaleInput: UpdateSaleInput!): Sale!
+  createGift(createGiftInput: CreateGiftInput!): Gift!
+  updateGiftById(updateGiftInput: UpdateGiftInput!): Gift!
+  deleteGiftById(updateGiftInput: UpdateGiftInput!): Gift!
 }
 
 input SignUpUserInput {
@@ -415,7 +536,6 @@ input CreateCommonInput {
   village: String!
   name: String!
   number: String!
-  event_date: DateTime!
   form_status: Int!
   form_type: FormType
   query_status: queryStatus
@@ -432,7 +552,6 @@ input UpdateCommonInput {
   village: String
   name: String
   number: String
-  event_date: DateTime
   form_status: Int
   form_type: FormType
   query_status: queryStatus
@@ -501,6 +620,158 @@ input UpdateNaInput {
   land_site_plan_url: String!
   nakel_url_1_14: String!
   nakel_rr_14: String!
+  remarks: String
+  signature_url: String
+  iagree: Agree
+  status: status
+  id: Int!
+  rejection_reason: String
+  certificate_id: String
+  certificate_date: DateTime
+  certificate_url: String
+  comments_dept: String
+  condition_to_follow: String
+  deletedAt: DateTime
+}
+
+input CreateSaleInput {
+  userId: Int
+  user_uid: String
+  name: String!
+  address: String!
+  mobile: String!
+  email: String
+  scst: ScSt
+  occupation: String
+  govt_employee: String
+  village_id: Int!
+  survey_no: String!
+  sub_division: String!
+  land_use: String
+  land_situate: String
+  electric: String
+  road_access: String
+  land_acq: String
+  sale_reason: String
+  name_purchaser: String
+  address_purchaser: String
+  mobile_purchaser: String
+  addition_land: String
+  past_appln_reject: String
+  agri_evidence_url: String!
+  govt_evidence_url: String!
+  land_site_plan_url: String!
+  nakel_url_1_14: String!
+  remarks: String
+  signature_url: String
+  iagree: Agree
+  status: status
+}
+
+input UpdateSaleInput {
+  userId: Int
+  user_uid: String
+  name: String
+  address: String
+  mobile: String
+  email: String
+  scst: ScSt
+  occupation: String
+  govt_employee: String
+  village_id: Int!
+  survey_no: String!
+  sub_division: String!
+  land_use: String
+  land_situate: String
+  electric: String
+  road_access: String
+  land_acq: String
+  sale_reason: String
+  name_purchaser: String
+  address_purchaser: String
+  mobile_purchaser: String
+  addition_land: String
+  past_appln_reject: String
+  agri_evidence_url: String!
+  govt_evidence_url: String!
+  land_site_plan_url: String!
+  nakel_url_1_14: String!
+  remarks: String
+  signature_url: String
+  iagree: Agree
+  status: status
+  id: Int!
+  rejection_reason: String
+  certificate_id: String
+  certificate_date: DateTime
+  certificate_url: String
+  comments_dept: String
+  condition_to_follow: String
+  deletedAt: DateTime
+}
+
+input CreateGiftInput {
+  userId: Int
+  user_uid: String
+  name: String!
+  address: String!
+  mobile: String!
+  email: String
+  scst: ScSt
+  occupation: String
+  govt_employee: String
+  village_id: Int!
+  survey_no: String!
+  sub_division: String!
+  land_use: String
+  land_situate: String
+  electric: String
+  road_access: String
+  land_acq: String
+  gift_reason: String
+  name_donee: String
+  address_donee: String
+  mobile_donee: String
+  addition_land: String
+  past_appln_reject: String
+  agri_evidence_url: String!
+  govt_evidence_url: String!
+  land_site_plan_url: String!
+  nakel_url_1_14: String!
+  remarks: String
+  signature_url: String
+  iagree: Agree
+  status: status
+}
+
+input UpdateGiftInput {
+  userId: Int
+  user_uid: String
+  name: String
+  address: String
+  mobile: String
+  email: String
+  scst: ScSt
+  occupation: String
+  govt_employee: String
+  village_id: Int!
+  survey_no: String!
+  sub_division: String!
+  land_use: String
+  land_situate: String
+  electric: String
+  road_access: String
+  land_acq: String
+  gift_reason: String
+  name_donee: String
+  address_donee: String
+  mobile_donee: String
+  addition_land: String
+  past_appln_reject: String
+  agri_evidence_url: String!
+  govt_evidence_url: String!
+  land_site_plan_url: String!
+  nakel_url_1_14: String!
   remarks: String
   signature_url: String
   iagree: Agree

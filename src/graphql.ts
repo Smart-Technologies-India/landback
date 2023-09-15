@@ -138,7 +138,6 @@ export interface SearchCommonInput {
     village?: Nullable<string>;
     name?: Nullable<string>;
     number?: Nullable<string>;
-    event_date?: Nullable<DateTime>;
     form_status?: Nullable<number>;
     form_type?: Nullable<FormType>;
     query_status?: Nullable<queryStatus>;
@@ -151,6 +150,13 @@ export interface FilterCommonInput {
     user_type?: Nullable<UserType>;
     user_id: number;
     form_type?: Nullable<FormType>;
+}
+
+export interface SearchSurveyInput {
+    villageId?: Nullable<number>;
+    survey_no?: Nullable<string>;
+    sub_division?: Nullable<string>;
+    owner_name?: Nullable<string>;
 }
 
 export interface SignUpUserInput {
@@ -213,7 +219,6 @@ export interface CreateCommonInput {
     village: string;
     name: string;
     number: string;
-    event_date: DateTime;
     form_status: number;
     form_type?: Nullable<FormType>;
     query_status?: Nullable<queryStatus>;
@@ -230,7 +235,6 @@ export interface UpdateCommonInput {
     village?: Nullable<string>;
     name?: Nullable<string>;
     number?: Nullable<string>;
-    event_date?: Nullable<DateTime>;
     form_status?: Nullable<number>;
     form_type?: Nullable<FormType>;
     query_status?: Nullable<queryStatus>;
@@ -313,6 +317,158 @@ export interface UpdateNaInput {
     deletedAt?: Nullable<DateTime>;
 }
 
+export interface CreateSaleInput {
+    userId?: Nullable<number>;
+    user_uid?: Nullable<string>;
+    name: string;
+    address: string;
+    mobile: string;
+    email?: Nullable<string>;
+    scst?: Nullable<ScSt>;
+    occupation?: Nullable<string>;
+    govt_employee?: Nullable<string>;
+    village_id: number;
+    survey_no: string;
+    sub_division: string;
+    land_use?: Nullable<string>;
+    land_situate?: Nullable<string>;
+    electric?: Nullable<string>;
+    road_access?: Nullable<string>;
+    land_acq?: Nullable<string>;
+    sale_reason?: Nullable<string>;
+    name_purchaser?: Nullable<string>;
+    address_purchaser?: Nullable<string>;
+    mobile_purchaser?: Nullable<string>;
+    addition_land?: Nullable<string>;
+    past_appln_reject?: Nullable<string>;
+    agri_evidence_url: string;
+    govt_evidence_url: string;
+    land_site_plan_url: string;
+    nakel_url_1_14: string;
+    remarks?: Nullable<string>;
+    signature_url?: Nullable<string>;
+    iagree?: Nullable<Agree>;
+    status?: Nullable<status>;
+}
+
+export interface UpdateSaleInput {
+    userId?: Nullable<number>;
+    user_uid?: Nullable<string>;
+    name?: Nullable<string>;
+    address?: Nullable<string>;
+    mobile?: Nullable<string>;
+    email?: Nullable<string>;
+    scst?: Nullable<ScSt>;
+    occupation?: Nullable<string>;
+    govt_employee?: Nullable<string>;
+    village_id: number;
+    survey_no: string;
+    sub_division: string;
+    land_use?: Nullable<string>;
+    land_situate?: Nullable<string>;
+    electric?: Nullable<string>;
+    road_access?: Nullable<string>;
+    land_acq?: Nullable<string>;
+    sale_reason?: Nullable<string>;
+    name_purchaser?: Nullable<string>;
+    address_purchaser?: Nullable<string>;
+    mobile_purchaser?: Nullable<string>;
+    addition_land?: Nullable<string>;
+    past_appln_reject?: Nullable<string>;
+    agri_evidence_url: string;
+    govt_evidence_url: string;
+    land_site_plan_url: string;
+    nakel_url_1_14: string;
+    remarks?: Nullable<string>;
+    signature_url?: Nullable<string>;
+    iagree?: Nullable<Agree>;
+    status?: Nullable<status>;
+    id: number;
+    rejection_reason?: Nullable<string>;
+    certificate_id?: Nullable<string>;
+    certificate_date?: Nullable<DateTime>;
+    certificate_url?: Nullable<string>;
+    comments_dept?: Nullable<string>;
+    condition_to_follow?: Nullable<string>;
+    deletedAt?: Nullable<DateTime>;
+}
+
+export interface CreateGiftInput {
+    userId?: Nullable<number>;
+    user_uid?: Nullable<string>;
+    name: string;
+    address: string;
+    mobile: string;
+    email?: Nullable<string>;
+    scst?: Nullable<ScSt>;
+    occupation?: Nullable<string>;
+    govt_employee?: Nullable<string>;
+    village_id: number;
+    survey_no: string;
+    sub_division: string;
+    land_use?: Nullable<string>;
+    land_situate?: Nullable<string>;
+    electric?: Nullable<string>;
+    road_access?: Nullable<string>;
+    land_acq?: Nullable<string>;
+    gift_reason?: Nullable<string>;
+    name_donee?: Nullable<string>;
+    address_donee?: Nullable<string>;
+    mobile_donee?: Nullable<string>;
+    addition_land?: Nullable<string>;
+    past_appln_reject?: Nullable<string>;
+    agri_evidence_url: string;
+    govt_evidence_url: string;
+    land_site_plan_url: string;
+    nakel_url_1_14: string;
+    remarks?: Nullable<string>;
+    signature_url?: Nullable<string>;
+    iagree?: Nullable<Agree>;
+    status?: Nullable<status>;
+}
+
+export interface UpdateGiftInput {
+    userId?: Nullable<number>;
+    user_uid?: Nullable<string>;
+    name?: Nullable<string>;
+    address?: Nullable<string>;
+    mobile?: Nullable<string>;
+    email?: Nullable<string>;
+    scst?: Nullable<ScSt>;
+    occupation?: Nullable<string>;
+    govt_employee?: Nullable<string>;
+    village_id: number;
+    survey_no: string;
+    sub_division: string;
+    land_use?: Nullable<string>;
+    land_situate?: Nullable<string>;
+    electric?: Nullable<string>;
+    road_access?: Nullable<string>;
+    land_acq?: Nullable<string>;
+    gift_reason?: Nullable<string>;
+    name_donee?: Nullable<string>;
+    address_donee?: Nullable<string>;
+    mobile_donee?: Nullable<string>;
+    addition_land?: Nullable<string>;
+    past_appln_reject?: Nullable<string>;
+    agri_evidence_url: string;
+    govt_evidence_url: string;
+    land_site_plan_url: string;
+    nakel_url_1_14: string;
+    remarks?: Nullable<string>;
+    signature_url?: Nullable<string>;
+    iagree?: Nullable<Agree>;
+    status?: Nullable<status>;
+    id: number;
+    rejection_reason?: Nullable<string>;
+    certificate_id?: Nullable<string>;
+    certificate_date?: Nullable<DateTime>;
+    certificate_url?: Nullable<string>;
+    comments_dept?: Nullable<string>;
+    condition_to_follow?: Nullable<string>;
+    deletedAt?: Nullable<DateTime>;
+}
+
 export interface Auth {
     token: string;
     id: number;
@@ -380,7 +536,6 @@ export interface Common {
     village: string;
     name: string;
     number: string;
-    event_date: DateTime;
     form_status: number;
     form_type: FormType;
     query_status: queryStatus;
@@ -478,6 +633,108 @@ export interface Na {
     deletedAt?: Nullable<DateTime>;
 }
 
+export interface Survey {
+    id: number;
+    villageId: number;
+    survey_no: string;
+    sub_division?: Nullable<string>;
+    owner_name: string;
+    area: string;
+    zone: string;
+    status: status;
+    createdAt: DateTime;
+    updatedAt: DateTime;
+    deletedAt?: Nullable<DateTime>;
+}
+
+export interface Sale {
+    id: number;
+    userId?: Nullable<number>;
+    user_uid?: Nullable<string>;
+    name?: Nullable<string>;
+    address?: Nullable<string>;
+    mobile?: Nullable<string>;
+    email?: Nullable<string>;
+    scst?: Nullable<ScSt>;
+    occupation?: Nullable<string>;
+    govt_employee?: Nullable<string>;
+    village_id: number;
+    survey_no: string;
+    sub_division: string;
+    land_use?: Nullable<string>;
+    land_situate?: Nullable<string>;
+    electric?: Nullable<string>;
+    road_access?: Nullable<string>;
+    land_acq?: Nullable<string>;
+    sale_reason?: Nullable<string>;
+    name_purchaser?: Nullable<string>;
+    address_purchaser?: Nullable<string>;
+    mobile_purchaser?: Nullable<string>;
+    addition_land?: Nullable<string>;
+    past_appln_reject?: Nullable<string>;
+    agri_evidence_url: string;
+    govt_evidence_url: string;
+    land_site_plan_url: string;
+    nakel_url_1_14: string;
+    remarks?: Nullable<string>;
+    signature_url?: Nullable<string>;
+    rejection_reason?: Nullable<string>;
+    certificate_id?: Nullable<string>;
+    certificate_date?: Nullable<DateTime>;
+    certificate_url?: Nullable<string>;
+    comments_dept?: Nullable<string>;
+    condition_to_follow?: Nullable<string>;
+    iagree?: Nullable<Agree>;
+    status?: Nullable<status>;
+    createdAt: DateTime;
+    updatedAt: DateTime;
+    deletedAt?: Nullable<DateTime>;
+}
+
+export interface Gift {
+    id: number;
+    userId?: Nullable<number>;
+    user_uid?: Nullable<string>;
+    name?: Nullable<string>;
+    address?: Nullable<string>;
+    mobile?: Nullable<string>;
+    email?: Nullable<string>;
+    scst?: Nullable<ScSt>;
+    occupation?: Nullable<string>;
+    govt_employee?: Nullable<string>;
+    village_id: number;
+    survey_no: string;
+    sub_division: string;
+    land_use?: Nullable<string>;
+    land_situate?: Nullable<string>;
+    electric?: Nullable<string>;
+    road_access?: Nullable<string>;
+    land_acq?: Nullable<string>;
+    gift_reason?: Nullable<string>;
+    name_donee?: Nullable<string>;
+    address_donee?: Nullable<string>;
+    mobile_donee?: Nullable<string>;
+    addition_land?: Nullable<string>;
+    past_appln_reject?: Nullable<string>;
+    agri_evidence_url: string;
+    govt_evidence_url: string;
+    land_site_plan_url: string;
+    nakel_url_1_14: string;
+    remarks?: Nullable<string>;
+    signature_url?: Nullable<string>;
+    rejection_reason?: Nullable<string>;
+    certificate_id?: Nullable<string>;
+    certificate_date?: Nullable<DateTime>;
+    certificate_url?: Nullable<string>;
+    comments_dept?: Nullable<string>;
+    condition_to_follow?: Nullable<string>;
+    iagree?: Nullable<Agree>;
+    status?: Nullable<status>;
+    createdAt: DateTime;
+    updatedAt: DateTime;
+    deletedAt?: Nullable<DateTime>;
+}
+
 export interface IQuery {
     signin(loginUserInput: LoginUserInput): Auth | Promise<Auth>;
     verifyOtp(mobileLoginInput: MobileLoginInput): Auth | Promise<Auth>;
@@ -496,8 +753,16 @@ export interface IQuery {
     officerFileCount(): OfficerCount[] | Promise<OfficerCount[]>;
     officerFileProgress(): FileProgress | Promise<FileProgress>;
     villageFileProgress(): VillageProgress[] | Promise<VillageProgress[]>;
+    getAllSurvey(): Survey[] | Promise<Survey[]>;
+    getAllSurveyById(id: number): Survey | Promise<Survey>;
+    getSurveyNumber(searchSurveyInput: SearchSurveyInput): Survey[] | Promise<Survey[]>;
+    getSubDivision(searchSurveyInput: SearchSurveyInput): Survey[] | Promise<Survey[]>;
     getAllNa(): Na[] | Promise<Na[]>;
     getNaById(id: number): Na | Promise<Na>;
+    getAllSale(): Sale[] | Promise<Sale[]>;
+    getSaleById(id: number): Sale | Promise<Sale>;
+    getAllGift(): Gift[] | Promise<Gift[]>;
+    getGiftById(id: number): Gift | Promise<Gift>;
 }
 
 export interface IMutation {
@@ -513,6 +778,12 @@ export interface IMutation {
     createNa(createNaInput: CreateNaInput): Na | Promise<Na>;
     updateNaById(updateNaInput: UpdateNaInput): Na | Promise<Na>;
     deleteNaById(updateNaInput: UpdateNaInput): Na | Promise<Na>;
+    createSale(createSaleInput: CreateSaleInput): Sale | Promise<Sale>;
+    updateSaleById(updateSaleInput: UpdateSaleInput): Sale | Promise<Sale>;
+    deleteSaleById(updateSaleInput: UpdateSaleInput): Sale | Promise<Sale>;
+    createGift(createGiftInput: CreateGiftInput): Gift | Promise<Gift>;
+    updateGiftById(updateGiftInput: UpdateGiftInput): Gift | Promise<Gift>;
+    deleteGiftById(updateGiftInput: UpdateGiftInput): Gift | Promise<Gift>;
 }
 
 export type DateTime = any;

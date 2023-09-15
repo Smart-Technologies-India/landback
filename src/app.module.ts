@@ -13,6 +13,9 @@ import { QueryModule } from './query/query.module';
 import { CommonModule } from './common/common.module';
 import { VillageModule } from './village/village.module';
 import { NaModule } from './na/na.module';
+import { SurveyModule } from './survey/survey.module';
+import { SaleModule } from './salepermission/salepermission.module';
+import { GiftModule } from './giftpermission/giftpermission.module';
 
 @Module({
   imports: [
@@ -35,7 +38,10 @@ import { NaModule } from './na/na.module';
     UploaderModule,
     QueryModule,
     CommonModule,
+    SurveyModule,
     NaModule,
+    SaleModule,
+    GiftModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -317,6 +317,7 @@ model gift_form {
   addition_land       String?
   name_donee          String?
   address_donee       String?
+  mobile_donee        String?
   agri_evidence_url   String?
   govt_evidence_url   String?
   past_appln_reject   String?
@@ -362,6 +363,7 @@ model sale_form {
   addition_land       String?
   name_purchaser      String?
   address_purchaser   String?
+  mobile_purchaser    String?
   agri_evidence_url   String?
   govt_evidence_url   String?
   past_appln_reject   String?

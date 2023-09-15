@@ -33,9 +33,6 @@ export class Common {
   @Field(() => String)
   number: string;
 
-  @Field(() => Date)
-  event_date: Date;
-
   @Field(() => Int)
   form_status: number;
 

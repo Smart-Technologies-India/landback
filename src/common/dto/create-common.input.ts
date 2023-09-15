@@ -50,10 +50,6 @@ export class CreateCommonInput {
   number: string;
 
   @IsNotEmpty()
-  @Field(() => Date)
-  event_date: Date;
-
-  @IsNotEmpty()
   @Field(() => Int)
   form_status: number;
 

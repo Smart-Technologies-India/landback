@@ -46,10 +46,6 @@ export class UpdateCommonInput extends PartialType(CreateCommonInput) {
   number: string;
 
   @IsOptional()
-  @Field(() => Date, { nullable: true })
-  event_date: Date;
-
-  @IsOptional()
   @Field(() => Int, { nullable: true })
   form_status: number;
 
